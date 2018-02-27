@@ -36,6 +36,15 @@ public class LuisTest {
         driver.findElement(By.name("btnK")).click();
     }
 
+    @Test
+    public void Test3()
+    {
+        driver.get("http://www.google.com");
+        WebElement search = driver.findElement(By.name("q"));
+        search.sendKeys("PSG");
+        driver.findElement(By.name("btnK")).click();
+    }
+
     @After
     public void quit()
     {
