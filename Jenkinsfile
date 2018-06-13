@@ -12,7 +12,7 @@ node {
 
     stage('Publish')
     {
-        junit 'build/reports/**/*.xml'
+        junit 'build/test-results/**/*.xml'
         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/reports/tests/test', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
     }
 }
