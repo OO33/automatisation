@@ -1,15 +1,25 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Test') {
-            steps {
-                /* `make check` returns non-zero on test failures,
-                * using `true` to allow the Pipeline to continue nonetheless
-                */
-                gradlew clean test
+    node {
+        checkout scm
 
+        stages {
+                stage('Test') {
+                    /* `make check` returns non-zero on test failures,
+                    * using `true` to allow the Pipeline to continue nonetheless
+                    */
+                    bat './gradlew.bat clean'
+                }
+
+
+                stage('Test') {
+                        /* `make check` returns non-zero on test failures,
+                        * using `true` to allow the Pipeline to continue nonetheless
+                        */
+                        bat './gradlew.bat test'
+                }
             }
-        }
     }
+
 }
