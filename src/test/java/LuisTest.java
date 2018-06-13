@@ -43,7 +43,7 @@ public class LuisTest {
     }
 
     @Test
-    public void Test3()
+    public void Test4()
     {
         driver.get("http://www.google.com");
         WebElement search = driver.findElement(By.name("q"));
