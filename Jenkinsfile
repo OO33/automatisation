@@ -1,4 +1,8 @@
 node {
+
+    stage 'Checkout'
+    checkout scm
+
     stage('Clean') {
         bat 'gradlew clean'
     }
