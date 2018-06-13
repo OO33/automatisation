@@ -1,11 +1,11 @@
 node {
     stage('Clean') {
-        bat './gradlew.bat clean'
+        bat 'gradlew clean'
     }
 
 
     stage('Test') {
-            bat './gradlew.bat test'
+            bat 'gradlew test'
     }
 }
 
