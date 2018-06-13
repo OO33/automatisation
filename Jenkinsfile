@@ -10,10 +10,9 @@ node {
     stage 'Test'
         bat 'gradlew test'
 
-    post {
-            always {
-                junit 'build/reports/**/*.xml'
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/reports/tests/test', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-            }
-        }
+    stage 'Publish'
+    {
+        junit 'build/reports/**/*.xml'
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/reports/tests/test', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+     }
 }
