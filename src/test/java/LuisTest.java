@@ -42,6 +42,14 @@ public class LuisTest {
         search.sendKeys("PSG" + Keys.ENTER);
     }
 
+    @Test
+    public void Test3()
+    {
+        driver.get("http://www.google.com");
+        WebElement search = driver.findElement(By.name("q"));
+        search.sendKeys("Garelli" + Keys.ENTER);
+    }
+
     @After
     public void quit()
     {
