@@ -1,15 +1,13 @@
 node {
 
     stage 'Checkout'
-    checkout scm
+        checkout scm
 
-    stage('Clean') {
+    stage 'Clean'
         bat 'gradlew clean'
-    }
 
+    stage 'Test'
+        bat 'gradlew test'
 
-    stage('Test') {
-            bat 'gradlew test'
-    }
 }
 
