@@ -1,17 +1,15 @@
 #!/usr/bin/env groovy
 
-pipeline{
-    node {
-        stage 'Checkout'
-            checkout scm
+node {
+    stage 'Checkout'
+        checkout scm
 
-        stage 'Clean'
-            bat 'gradlew clean'
+    stage 'Clean'
+        bat 'gradlew clean'
 
-        stage 'Test'
-            bat 'gradlew test'
+    stage 'Test'
+        bat 'gradlew test'
 
-        stage 'Publish'
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/reports/tests/test', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-    }
+    stage 'Publish'
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/reports/tests/test', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
 }
