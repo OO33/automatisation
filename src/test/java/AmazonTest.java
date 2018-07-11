@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
@@ -73,8 +74,8 @@ public class AmazonTest {
         quantite.selectByValue("2");
 
         FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(5, SECONDS)
-                .pollingEvery(300, MILLISECONDS)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofMillis(100))
                 .ignoring(NoSuchElementException.class);
 
         Boolean foo = wait.until(new Function<WebDriver, Boolean>() {
@@ -87,6 +88,22 @@ public class AmazonTest {
 
         String prixFinal = driver.findElement(By.id("sc-subtotal-amount-activecart")).getText();
         Assert.assertThat(prixFinal, is("EUR 99,98"));
+    }
+
+    @Test
+    public void TestMarioKartWithPageObjects()
+    {
+        HomePage homePage = new HomePage(driver);
+        ConsolePage consolePage = homePage.getHeader().openVideoGames("Nintendo Switch");
+        GamesPage gamesPage = consolePage.openGamesCategory();
+        ItemPage item = gamesPage.openItem(0); // premier resultat
+        ItemAddedPage itemAddedPage = item.addToCart();
+        CartPage cartPage = itemAddedPage.getHeader().openCart();
+        cartPage.changeItemQuantity(0, 1); // changer la quantite de notre premier article a 3
+        cartPage.changeItemQuantity(0, 3); // changer la quantite de notre premier article a 3
+        cartPage.changeItemQuantity(0, 2); // changer la quantite de notre premier article a 3
+        cartPage.changeItemQuantity(0, 1); // changer la quantite de notre premier article a 3
+        Assert.assertThat(cartPage.getTotalPrice(), is("EUR 49,99"));
     }
 
     @Before
