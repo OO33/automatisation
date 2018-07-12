@@ -4,20 +4,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class GamesPage {
-
-    WebDriver driver;
-
-    @FindBy(id = "nav-main")
-    private Header header;
+public class GamesPage extends AmazonPage{
 
     @FindBy(id = "mainResults")
     private WebElement allResults;
 
     public GamesPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        header = new Header(driver);
+        super(driver);
     }
 
     public ItemPage openItem(int index) {

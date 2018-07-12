@@ -13,12 +13,7 @@ import java.util.function.Function;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-public class CartPage {
-
-    WebDriver driver;
-
-    @FindBy(id = "nav-main")
-    private Header header;
+public class CartPage extends AmazonPage {
 
     @FindBy(id = "sc-subtotal-label-activecart")
     private WebElement subTotalLabel;
@@ -27,9 +22,7 @@ public class CartPage {
     private WebElement subTotalAmount;
 
     public CartPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        header = new Header(driver);
+        super(driver);
     }
 
     public CartPage changeItemQuantity(int itemNumber, int quantity) {
@@ -66,10 +59,5 @@ public class CartPage {
 
     public String getTotalPrice() {
         return subTotalAmount.getText();
-    }
-
-    public Header getHeader()
-    {
-        return header;
     }
 }

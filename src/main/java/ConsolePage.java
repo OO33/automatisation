@@ -4,20 +4,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ConsolePage {
-
-    WebDriver driver;
-
-    @FindBy(id = "nav-main")
-    private Header header;
+public class ConsolePage extends AmazonPage {
 
     @FindBy(id = "anonCarousel1")
     private WebElement categoriesSection;
 
     public ConsolePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        header = new Header(driver);
+        super(driver);
     }
 
     public GamesPage openGamesCategory() {

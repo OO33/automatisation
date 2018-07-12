@@ -94,7 +94,7 @@ public class AmazonTest {
     public void TestMarioKartWithPageObjects()
     {
         HomePage homePage = new HomePage(driver);
-        ConsolePage consolePage = homePage.getHeader().openVideoGames("PS4");
+        ConsolePage consolePage = homePage.getHeader().openVideoGames("Nintendo Switch");
         GamesPage gamesPage = consolePage.openGamesCategory();
         ItemPage item = gamesPage.openItem(0); // premier resultat
         ItemAddedPage itemAddedPage = item.addToCart();
