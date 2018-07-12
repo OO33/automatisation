@@ -34,12 +34,16 @@ public class CartPage {
 
     public CartPage changeItemQuantity(int itemNumber, int quantity) {
         itemNumber++;
+
+        // findElements
+
         String itemSelector = "div[data-item-count='" + Integer.toString(itemNumber) + "']";
         WebElement cartItem = driver.findElement(By.cssSelector(itemSelector));
 
         String oldText = subTotalLabel.getText();
 
         Select quantityDropdown = new Select(cartItem.findElement(By.name("quantity")));
+
         String selectedQuantity = quantityDropdown.getFirstSelectedOption().getText();
 
         if(Integer.parseInt(selectedQuantity.trim()) == quantity)
@@ -53,7 +57,7 @@ public class CartPage {
                 .ignoring(NoSuchElementException.class);
 
         wait.until(driver -> {
-            String newText = driver.findElement(By.id("sc-subtotal-label-activecart")).getText();
+            String newText = subTotalLabel.getText();
             return !newText.equalsIgnoreCase(oldText);
         });
 
@@ -62,5 +66,10 @@ public class CartPage {
 
     public String getTotalPrice() {
         return subTotalAmount.getText();
+    }
+
+    public Header getHeader()
+    {
+        return header;
     }
 }

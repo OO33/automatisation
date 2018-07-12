@@ -94,16 +94,13 @@ public class AmazonTest {
     public void TestMarioKartWithPageObjects()
     {
         HomePage homePage = new HomePage(driver);
-        ConsolePage consolePage = homePage.getHeader().openVideoGames("Nintendo Switch");
+        ConsolePage consolePage = homePage.getHeader().openVideoGames("PS4");
         GamesPage gamesPage = consolePage.openGamesCategory();
         ItemPage item = gamesPage.openItem(0); // premier resultat
         ItemAddedPage itemAddedPage = item.addToCart();
         CartPage cartPage = itemAddedPage.getHeader().openCart();
-        cartPage.changeItemQuantity(0, 1); // changer la quantite de notre premier article a 3
         cartPage.changeItemQuantity(0, 3); // changer la quantite de notre premier article a 3
-        cartPage.changeItemQuantity(0, 2); // changer la quantite de notre premier article a 3
-        cartPage.changeItemQuantity(0, 1); // changer la quantite de notre premier article a 3
-        Assert.assertThat(cartPage.getTotalPrice(), is("EUR 49,99"));
+        Assert.assertThat(cartPage.getTotalPrice(), is("EUR 149,97"));
     }
 
     @Before
