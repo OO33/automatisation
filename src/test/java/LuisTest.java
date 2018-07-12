@@ -27,7 +27,7 @@ public class LuisTest {
         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
     }
 
-    @Test
+    //@Test
     public void Test1()
     {
         driver.get("http://www.google.com");
@@ -35,7 +35,7 @@ public class LuisTest {
         search.sendKeys("Real Madrid" + Keys.ENTER);
     }
 
-    @Test
+    //@Test
     public void Test2()
     {
         driver.get("http://www.google.com");
@@ -43,7 +43,7 @@ public class LuisTest {
         search.sendKeys("Test" + Keys.ENTER);
     }
 
-    @Test
+    //@Test
     public void Test3()
     {
         driver.get("http://www.google.com");
@@ -51,7 +51,7 @@ public class LuisTest {
         search.sendKeys("PSG" + Keys.ENTER);
     }
 
-    @Test
+    //@Test
     public void Test4()
     {
         driver.get("http://www.google.com");

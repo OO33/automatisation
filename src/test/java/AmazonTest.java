@@ -16,6 +16,7 @@ import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
+import static java.time.Duration.*;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.hamcrest.CoreMatchers.is;
@@ -74,8 +75,8 @@ public class AmazonTest {
         quantite.selectByValue("2");
 
         FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(5))
-                .pollingEvery(Duration.ofMillis(100))
+                .withTimeout(ofSeconds(5))
+                .pollingEvery(ofMillis(100))
                 .ignoring(NoSuchElementException.class);
 
         Boolean foo = wait.until(new Function<WebDriver, Boolean>() {
